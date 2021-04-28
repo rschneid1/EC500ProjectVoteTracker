@@ -7,5 +7,3 @@ Implemented in PyQt5
 # Backend
 TBD - Probably going to be implemeneted in Flask
 
-Author: Ryan Schneider
-
