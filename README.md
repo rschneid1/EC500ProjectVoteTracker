@@ -4,7 +4,7 @@ Desktop application that allows the user to interact with a server to vote and s
 
 # Implementation:
 ## Frontend
-Implemented in PyQt5
+Implemented in PyQt5 \ 
 Has a queue to create threads to handle API calls
 
 ## Backend
