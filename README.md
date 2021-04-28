@@ -3,8 +3,9 @@
 Desktop application that allows the user to interact with a server to vote and see their representatives
 
 # Implementation:
-## Frontned
+## Frontend
 Implemented in PyQt5
+Has a queue to create threads to handle API calls
 
 ## Backend
 TBD - Probably going to be implemented in Flask
