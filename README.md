@@ -1,4 +1,11 @@
 # VoteTracker
-# Author: Ryan Schneider
-# Description: 
-Provide a frontend interface to interact with congressional vote trackers. Attempt to implement any missing API features for the backend (using flask )
+Desktop application that allows the user to interact with a server to vote, see their representatives
+
+# Frontend
+Implemented in PyQt5
+
+# Backend
+TBD - Probably going to be implemeneted in Flask
+
+Author: Ryan Schneider
+
