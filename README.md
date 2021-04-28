@@ -1,4 +1,5 @@
-# VoteTracker
+## Welcome to VoteTracker
+# Description
 Desktop application that allows the user to interact with a server to vote, see their representatives
 
 # Frontend
