@@ -22,3 +22,11 @@ TBD - Probably going to be implemented in Flask
 3. Run "python -m pip install -r dependencies.txt" 
 4. Then you can run the application using: "python app.py" 
 
+
+## Log:
+First implemenation of Frontend:
+Main Page:
+![image](https://user-images.githubusercontent.com/55038099/117233947-1327d300-adf2-11eb-84e0-23c24655082b.png)
+
+User Screen:
+![image](https://user-images.githubusercontent.com/55038099/117233999-276bd000-adf2-11eb-8961-8b21d17fe730.png)
