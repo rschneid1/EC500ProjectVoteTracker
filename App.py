@@ -146,7 +146,8 @@ class mainWindow(QMainWindow):
 
         self.artList = QListWidget()
         self.artList.setStyleSheet("*{border: 5px; height: 200px; width: 300px}")
-        self.artLayout.addWidget(self.artTitle)
+        #self.artList.resize(200,300)
+        self.artLayout.addWidget(self.artList)
 
         self.grid.addWidget(self.artWidget, 0,0)
 
@@ -156,11 +157,12 @@ class mainWindow(QMainWindow):
         self.repWidget.setLayout(self.repLayout)
 
         self.repTitle = QLabel("Representative List")
-        self.artLayout.addWidget(self.repTitle)
+        self.repLayout.addWidget(self.repTitle)
 
         self.repList = QListWidget()
         self.repList.setStyleSheet("*{border: 5px; height: 200px; width: 300px}")
-        self.repLayout.addWidget(self.repTitle)
+        #self.repList.resize(200,300)
+        self.repLayout.addWidget(self.repList)
 
         self.grid.addWidget(self.repWidget, 1,0)
 
@@ -182,7 +184,7 @@ class mainWindow(QMainWindow):
     # opened window for parts (that are genes)
     #def open_dialog(self):
         #dlg = QDialog()
-        #dlg.setWindowTitle("Export Window")
+        #dlg.setWindowTitle("test window")
         #dlg.layout = QVBoxLayout()
 
         #dlg.btn1 = QPushButton("test")
@@ -214,8 +216,55 @@ class mainWindow(QMainWindow):
 
     @pyqtSlot()
     def mainSearch_click(self):
-        # set nested stack to movie stack index
-        self.stack.setCurrentIndex(1)
+        # set nested stack to the inside stack
+
+        # check if proper zip code was entered
+        
+        inputZip = self.SearchBar.text()
+        #print(inputZip)
+        
+        if(inputZip.isdecimal() and (len(inputZip) == 5)):
+            # open dlg box for sign in
+            dlg = QDialog()
+            dlg.setWindowTitle("Log in ...")
+
+            dlg.stack = QStackedLayout()
+
+            # create log in buttons
+            dlg.logWidget = QWidget()
+            dlg.logButtons = QVBoxLayout()
+            dlg.logWidget.setLayout(dlg.logButtons)
+
+            # returning user
+            dlg.returnUser = QPushButton("Returning User")
+            dlg.returnUser.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            dlg.logButtons.addWidget(dlg.returnUser)
+
+            # Create Account
+            dlg.createAccount = QPushButton("Create an Account")
+            dlg.createAccount.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            dlg.logButtons.addWidget(dlg.createAccount)
+
+            dlg.stack.addWidget(dlg.logWidget)
+            dlg.stack.setCurrentIndex(0)
+            
+            # create in log in screen
+
+            # create representatives list
+
+            dlg.setLayout(dlg.stack)
+            dlg.exec()
+        else:
+            errorDlg = QDialog()
+            errorDlg.setWindowTitle(" Input is not a valid Zip Code")
+            
+            errorDlg.layout = QVBoxLayout()
+            errorDlg.error = QLabel("Please enter a valid zip code!")
+            errorDlg.layout.addWidget(errorDlg.error)
+            errorDlg.setLayout(errorDlg.layout)
+            errorDlg.exec()
+
+        #self.stack.setCurrentIndex(1)
         
 
 
