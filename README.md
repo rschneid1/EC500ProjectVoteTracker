@@ -39,3 +39,8 @@ Log in Page:
 ![image](https://user-images.githubusercontent.com/55038099/117236083-00af9880-adf6-11eb-8279-38366e87061b.png)
 
 
+If clicked on "Returning User":
+![image](https://user-images.githubusercontent.com/55038099/117237169-55eca980-adf8-11eb-8e0b-4fd477423129.png)
+
+
+
