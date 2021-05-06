@@ -30,3 +30,12 @@ Main Page:
 
 User Screen:
 ![image](https://user-images.githubusercontent.com/55038099/117233999-276bd000-adf2-11eb-8961-8b21d17fe730.png)
+
+
+Added Error Checking:
+![image](https://user-images.githubusercontent.com/55038099/117236055-f1304f80-adf5-11eb-93c6-06ec8caac053.png)
+
+Log in Page:
+![image](https://user-images.githubusercontent.com/55038099/117236083-00af9880-adf6-11eb-8279-38366e87061b.png)
+
+
