@@ -226,9 +226,16 @@ class mainWindow(QMainWindow):
         if(inputZip.isdecimal() and (len(inputZip) == 5)):
             # open dlg box for sign in
             dlg = QDialog()
+            dlg.resize(400,400)
             dlg.setWindowTitle("Log in ...")
 
             dlg.stack = QStackedLayout()
+
+            def logInClick():
+                dlg.stack.setCurrentIndex(1)
+
+            def logInCancel():
+                dlg.close()
 
             # create log in buttons
             dlg.logWidget = QWidget()
@@ -238,6 +245,7 @@ class mainWindow(QMainWindow):
             # returning user
             dlg.returnUser = QPushButton("Returning User")
             dlg.returnUser.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            dlg.returnUser.clicked.connect(logInClick)
             dlg.logButtons.addWidget(dlg.returnUser)
 
             # Create Account
@@ -249,6 +257,41 @@ class mainWindow(QMainWindow):
             dlg.stack.setCurrentIndex(0)
             
             # create in log in screen
+            dlg.returnWidget = QWidget()
+            dlg.returnView = QVBoxLayout()
+            dlg.returnWidget.setLayout(dlg.returnView)
+
+            # username label
+            dlg.userLabel = QLabel("Username")
+            dlg.returnView.addWidget(dlg.userLabel)
+
+            # username edit
+            dlg.userEnter = QLineEdit()
+            dlg.userEnter.setStyleSheet("*{border-radius: 25px} *{height: 100 px; font: 25px; border: 1px solid black} :hover{border: 2px solid blue}")
+            dlg.returnView.addWidget(dlg.userEnter)
+
+            # password label
+            dlg.passLabel = QLabel("Password")
+            dlg.returnView.addWidget(dlg.passLabel)
+
+            # password edit
+            dlg.passEnter = QLineEdit()
+            dlg.passEnter.setStyleSheet("*{border-radius: 25px} *{height: 100 px; font: 25px; border: 1px solid black} :hover{border: 2px solid blue}")
+            dlg.returnView.addWidget(dlg.passEnter)
+
+            # enter button
+            dlg.enterButton = QPushButton("Log in")
+            dlg.enterButton.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            # if clicked starts a thread to communicate with backend
+            dlg.returnView.addWidget(dlg.enterButton)
+
+            # cancel button
+            dlg.cancelButton = QPushButton("Cancel")
+            dlg.cancelButton.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            dlg.cancelButton.clicked.connect(logInCancel)
+            dlg.returnView.addWidget(dlg.cancelButton)
+
+            dlg.stack.addWidget(dlg.returnWidget)
 
             # create representatives list
 
