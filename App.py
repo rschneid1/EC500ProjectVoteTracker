@@ -3,7 +3,8 @@
 # This application has a GUI Front end implemented in PyQt5
 # And a potential backend
 
-# Interface with google civic information API
+# Using Open States to get list of the local representatives
+# https://docs.openstates.org/en/latest/api/v3/
 # Set up API Key
 
 import sys
@@ -13,6 +14,7 @@ import time
 import json
 import os
 import os.path
+import googlemaps
 
 from PyQt5.QtWidgets import * #QApplication, QLabel, QMainWindow, QWidget, QPushButton, QAction, QLineEdit, QMessageBox
 from PyQt5.QtGui import * 
@@ -20,6 +22,9 @@ from PyQt5.QtCore import * #Qt, pyqtSlot
 
 results_text = 0
 global_gene_list = 0
+
+# set up google maps for convering zip code to latitude and longitude
+gmaps = googlemaps.Client(key='')
 
 # Thread communication signals
 class WorkerSignals(QObject):
@@ -237,6 +242,9 @@ class mainWindow(QMainWindow):
             def logInCancel():
                 dlg.close()
 
+            def createAccountClick():
+                dlg.stack.setCurrentIndex(2)    
+
             # create log in buttons
             dlg.logWidget = QWidget()
             dlg.logButtons = QVBoxLayout()
@@ -251,6 +259,7 @@ class mainWindow(QMainWindow):
             # Create Account
             dlg.createAccount = QPushButton("Create an Account")
             dlg.createAccount.setStyleSheet("*{border-radius: 5px; height: 75px; width: 200px; font: 25px; border: 1px solid black} :hover{background-color: #34FEFC}")
+            dlg.createAccount.clicked.connect(createAccountClick)
             dlg.logButtons.addWidget(dlg.createAccount)
 
             dlg.stack.addWidget(dlg.logWidget)
@@ -294,6 +303,78 @@ class mainWindow(QMainWindow):
             dlg.stack.addWidget(dlg.returnWidget)
 
             # create representatives list
+            dlg.repWidget = QWidget()
+            dlg.repLayout = QVBoxLayout()
+            dlg.repWidget.setLayout(dlg.repLayout)
+
+            # create direction label
+            dlg.dirLabel = QLabel("Who are you?")
+            dlg.repLayout.addWidget(dlg.dirLabel)
+
+            # create list
+            dlg.repList = QListWidget()
+            dlg.repList.setStyleSheet(":item{font-size: 25px; font-weight: bold; height: 200px; border: 1px solid black; border-radius: 30px} :item:hover{border: 2px solid blue} :item:selected{background-color: #029D9C}")
+            dlg.repLayout.addWidget(dlg.repList)
+
+            dlg.stack.addWidget(dlg.repWidget)
+
+            
+            # get latitude and longitude of zip code from current location
+            query = inputZip + ', US'
+            geocode_result = gmaps.geocode(query)
+            lat = geocode_result[0]['geometry']['location']['lat']  
+            lng = geocode_result[0]['geometry']['location']['lng']
+            print(lat)
+            print(lng)
+
+            # get list of representatives using OpenStates
+            stateAPI = ''
+
+            link = "https://v3.openstates.org/people.geo?lat=" + str(lat) + "&lng=" + str(lng) + "&apikey=" + stateAPI
+            result = requests.get(link)
+
+            dic = result.json()
+            print(dic)
+
+            # to get name: dic['results']['name']
+            # to get party: dic['results']['party']
+            # to get image: dic['results']['image']
+            # to get email: dic['results']['email']
+
+            # populate list
+            for item in dic['results']:
+                # create new item and add it to the list
+                new_item = QListWidgetItem()
+                dlg.repList.addItem(new_item)
+
+
+                # make my custom widget
+                custom = QWidget()
+                newLayout = QHBoxLayout()
+
+                # make name and party label
+                output = item['name'] + "\n" + item['party']
+                leftLabel = QLabel(output)
+                newLayout.addWidget(leftLabel)
+
+                # display image
+                image = QImage()
+                url_image = item['image']
+                image.loadFromData(requests.get(url_image).content)
+
+                image_label = QLabel()
+                image_label.setPixmap(QPixmap(image))
+
+                newLayout.addWidget(image_label)
+
+                # set layout
+                custom.setLayout(newLayout)
+                
+                # associate item on the list with custom widget
+                dlg.repList.setItemWidget(new_item, custom)
+                
+                
+            
 
             dlg.setLayout(dlg.stack)
             dlg.exec()
