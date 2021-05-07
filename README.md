@@ -42,5 +42,9 @@ Log in Page:
 If clicked on "Returning User":
 ![image](https://user-images.githubusercontent.com/55038099/117237169-55eca980-adf8-11eb-8e0b-4fd477423129.png)
 
+If clicked on "Create Account":
+![image](https://user-images.githubusercontent.com/55038099/117479716-a9611380-af2e-11eb-81fe-710cf8b3f72f.png)
+
+
 
 
