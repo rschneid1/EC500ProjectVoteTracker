@@ -3,10 +3,18 @@
 Desktop application that allows the user to interact with a server to vote and see their representatives
 
 ## User Stories:
-1. Congress Representative is able to log into the online application and generate a poll
-2. The citizen has an application installed on their desktop where they are able to vote on that poll and see information about their representatives
+1. Congress Representative is able to log into the online application and generate a poll for a specific zip cocde
+2. The citize can see the polls posted for their zip code and vote in them and see information about their representatives
 
-Uses the ProPublica API
+
+# Known Bugs:
+1. User can vote more than once if they reload the application 
+2. The UI is a bit clunky
+
+
+Uses the following APIS:
+https://docs.openstates.org/en/latest/api/v3/  ( for finding the representative information)
+Google Geocode API (For turning zip codes into latitude and longitude
 
 # Implementation:
 ## Frontend
@@ -14,13 +22,13 @@ Implemented in PyQt5
 Has a queue to create threads to handle API calls
 
 ## Backend
-TBD - Probably going to be implemented in Flask
+Implemented in Flask with mongo used for databasing
 
 ## Setup
 1. Setup a Python Environment 
 2. Download the dependencies.txt file 
 3. Run "python -m pip install -r dependencies.txt" 
-4. Then you can run the application using: "python app.py" 
+4. To run the application, make sure you start up at instance of mongo and the backend. Then just run "python3 App.py" in your virtual environment. 
 
 
 ## Log:
@@ -44,6 +52,9 @@ If clicked on "Returning User":
 
 If clicked on "Create Account":
 ![image](https://user-images.githubusercontent.com/55038099/117479716-a9611380-af2e-11eb-81fe-710cf8b3f72f.png)
+
+Video Demo:
+
 
 
 
