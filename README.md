@@ -7,6 +7,10 @@ Desktop application that allows the user to interact with a server to vote and s
 2. The citize can see the polls posted for their zip code and vote in them and see information about their representatives
 
 
+Video Demo:
+https://drive.google.com/file/d/1-lSUUi0gwsrVmfHnqXX84xebhWfidr--/view?usp=sharing
+
+
 # Known Bugs:
 1. User can vote more than once if they reload the application 
 
@@ -52,8 +56,7 @@ If clicked on "Returning User":
 If clicked on "Create Account":
 ![image](https://user-images.githubusercontent.com/55038099/117479716-a9611380-af2e-11eb-81fe-710cf8b3f72f.png)
 
-Video Demo:
-https://drive.google.com/file/d/1-lSUUi0gwsrVmfHnqXX84xebhWfidr--/view?usp=sharing
+
 
 
 
