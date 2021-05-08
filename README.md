@@ -9,7 +9,6 @@ Desktop application that allows the user to interact with a server to vote and s
 
 # Known Bugs:
 1. User can vote more than once if they reload the application 
-2. The UI is a bit clunky
 
 
 Uses the following APIS:
